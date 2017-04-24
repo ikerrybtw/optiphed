@@ -19,7 +19,7 @@ for sample={SAMPLE1,SAMPLE2}
     dm=addColumn(dm,'Class',NaN);
     dm(:,'Class')=net(double(dm(:,cassFeatures))')';
     figure('name',[char(sample),'_Class'],'units','normalized','Position',[0,0,0.75,1],'Visible','on');
-    drawNucleiOutlines(dm,'Class',200,2); set(gca,'Ydir','reverse')
+    drawNucleiOutlines(dm,'Class',200,14); set(gca,'Ydir','reverse')
     %%Assess performance:
     [s,v,th,au]=perfcurve(double(dm(:,MARKERF)>0.92), double(dm(:,'Class')>0.9),'1','XCrit','sens','YCrit','spec');
     disp([char(sample),': AUC=',num2str(au)])
