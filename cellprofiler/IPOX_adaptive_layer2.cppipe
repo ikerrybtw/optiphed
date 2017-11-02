@@ -1,0 +1,475 @@
+CellProfiler Pipeline: http://www.cellprofiler.org
+Version:3
+DateRevision:20140723173957
+GitHash:6c2d896
+ModuleCount:22
+HasImagePlaneDetails:False
+
+LoadImages:[module_num:1|svn_version:\'Unknown\'|variable_revision_number:11|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    File type to be loaded:individual images
+    File selection method:Text-Exact match
+    Number of images in each group?:3
+    Type the text that the excluded images have in common:Do not use
+    Analyze all subfolders within the selected folder?:None
+    Input image file location:Default Input Folder\x7C
+    Check image sets for unmatched or duplicate files?:Yes
+    Group images by metadata?:No
+    Exclude certain files?:No
+    Specify metadata fields to group by:
+    Select subfolders to analyze:
+    Image count:1
+    Text that these images have in common (case-sensitive):_layer2.tif
+    Position of this image in each group:1
+    Extract metadata from where?:None
+    Regular expression that finds metadata in the file name:^(?P<Plate>.*)_(?P<Well>\x5BA-P\x5D\x5B0-9\x5D{2})_s(?P<Site>\x5B0-9\x5D)
+    Type the regular expression that finds metadata in the subfolder path:.*\x5B\\\\\\\\/\x5D(?P<Date>.*)\x5B\\\\\\\\/\x5D(?P<Run>.*)$
+    Channel count:1
+    Group the movie frames?:No
+    Grouping method:Interleaved
+    Number of channels per group:3
+    Load the input as images or objects?:Images
+    Name this loaded image:DNA
+    Name this loaded object:Nuclei
+    Retain outlines of loaded objects?:No
+    Name the outline image:LoadedImageOutlines
+    Channel number:1
+    Rescale intensities?:Yes
+
+ColorToGray:[module_num:2|svn_version:\'Unknown\'|variable_revision_number:3|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:DNA
+    Conversion method:Split
+    Image type:RGB
+    Name the output image:OrigGray
+    Relative weight of the red channel:1.0
+    Relative weight of the green channel:1.0
+    Relative weight of the blue channel:1.0
+    Convert red to gray?:Yes
+    Name the output image:OrigRed
+    Convert green to gray?:Yes
+    Name the output image:OrigGreen
+    Convert blue to gray?:Yes
+    Name the output image:OrigBlue
+    Convert hue to gray?:Yes
+    Name the output image:OrigHue
+    Convert saturation to gray?:Yes
+    Name the output image:OrigSaturation
+    Convert value to gray?:Yes
+    Name the output image:OrigValue
+    Channel count:1
+    Channel number:Red\x3A 1
+    Relative weight of the channel:1.0
+    Image name:Channel1
+
+UnmixColors:[module_num:3|svn_version:\'Unknown\'|variable_revision_number:2|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Stain count:1
+    Select the input color image:DNA
+    Name the output name:OrangeG
+    Stain:Orange-G
+    Red absorbance:0.5
+    Green absorbance:0.5
+    Blue absorbance:0.5
+
+UnmixColors:[module_num:4|svn_version:\'Unknown\'|variable_revision_number:2|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Stain count:1
+    Select the input color image:DNA
+    Name the output name:Costum
+    Stain:Custom
+    Red absorbance:0.36088
+    Green absorbance:0.575975
+    Blue absorbance:0.733497
+
+SaveImages:[module_num:5|svn_version:\'Unknown\'|variable_revision_number:11|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:False|wants_pause:False]
+    Select the type of image to save:Image
+    Select the image to save:OrangeG
+    Select the objects to save:None
+    Select the module display window to save:None
+    Select method for constructing file names:From image filename
+    Select image name for file prefix:DNA
+    Enter single file name:OrigBlue
+    Number of digits:4
+    Append a suffix to the image file name?:Yes
+    Text to append to the image name:_OrangeG
+    Saved file format:tif
+    Output file location:Default Output Folder\x7C
+    Image bit depth:8
+    Overwrite existing files without warning?:Yes
+    When to save:Every cycle
+    Rescale the images? :No
+    Save as grayscale or color image?:Grayscale
+    Select colormap:jet
+    Record the file and path information to the saved image?:No
+    Create subfolders in the output folder?:No
+    Base image folder:Elsewhere...\x7C
+    Saved movie format:avi
+
+SaveImages:[module_num:6|svn_version:\'Unknown\'|variable_revision_number:11|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:False|wants_pause:False]
+    Select the type of image to save:Image
+    Select the image to save:Costum
+    Select the objects to save:None
+    Select the module display window to save:None
+    Select method for constructing file names:From image filename
+    Select image name for file prefix:DNA
+    Enter single file name:OrigBlue
+    Number of digits:4
+    Append a suffix to the image file name?:Yes
+    Text to append to the image name:_Costum
+    Saved file format:tif
+    Output file location:Default Output Folder\x7C
+    Image bit depth:8
+    Overwrite existing files without warning?:Yes
+    When to save:Every cycle
+    Rescale the images? :No
+    Save as grayscale or color image?:Grayscale
+    Select colormap:jet
+    Record the file and path information to the saved image?:No
+    Create subfolders in the output folder?:No
+    Base image folder:Elsewhere...\x7C
+    Saved movie format:avi
+
+Crop:[module_num:7|svn_version:\'Unknown\'|variable_revision_number:2|show_window:True|notes:\x5B\'Crop the nuclei image down to a 200 x 200 rectangle by entering specific coordinates.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:False|wants_pause:False]
+    Select the input image:OrigBlue
+    Name the output image:CropBlue
+    Select the cropping shape:Rectangle
+    Select the cropping method:Coordinates
+    Apply which cycle\'s cropping pattern?:First
+    Left and right rectangle positions:1,200
+    Top and bottom rectangle positions:1,200
+    Coordinates of ellipse center:500,500
+    Ellipse radius, X direction:400
+    Ellipse radius, Y direction:200
+    Use Plate Fix?:No
+    Remove empty rows and columns?:Edges
+    Select the masking image:None
+    Select the image with a cropping mask:None
+    Select the objects:None
+
+Crop:[module_num:8|svn_version:\'Unknown\'|variable_revision_number:2|show_window:True|notes:\x5B\'Use the same cropping from the nuclei image for the PH3 image.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:False|wants_pause:False]
+    Select the input image:OrigGreen
+    Name the output image:CropGreen
+    Select the cropping shape:Rectangle
+    Select the cropping method:Coordinates
+    Apply which cycle\'s cropping pattern?:First
+    Left and right rectangle positions:1,200
+    Top and bottom rectangle positions:1,200
+    Coordinates of ellipse center:500,500
+    Ellipse radius, X direction:400
+    Ellipse radius, Y direction:200
+    Use Plate Fix?:No
+    Remove empty rows and columns?:Edges
+    Select the masking image:None
+    Select the image with a cropping mask:None
+    Select the objects:None
+
+IdentifyPrimaryObjects:[module_num:9|svn_version:\'Unknown\'|variable_revision_number:10|show_window:True|notes:\x5B\'Identify the nuclei from the nuclear stain image. Some manual adjustment of the smoothing filter size and maxima supression distance is required to optimize segmentation.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select the input image:Costum
+    Name the primary objects to be identified:Nuclei
+    Typical diameter of objects, in pixel units (Min,Max):1,40
+    Discard objects outside the diameter range?:No
+    Try to merge too small objects with nearby larger objects?:No
+    Discard objects touching the border of the image?:No
+    Method to distinguish clumped objects:Intensity
+    Method to draw dividing lines between clumped objects:Intensity
+    Size of smoothing filter:10
+    Suppress local maxima that are closer than this minimum allowed distance:5
+    Speed up by using lower-resolution image to find local maxima?:Yes
+    Name the outline image:NucOutlines
+    Fill holes in identified objects?:After both thresholding and declumping
+    Automatically calculate size of smoothing filter for declumping?:Yes
+    Automatically calculate minimum allowed distance between local maxima?:Yes
+    Retain outlines of the identified objects?:Yes
+    Automatically calculate the threshold using the Otsu method?:Yes
+    Enter Laplacian of Gaussian threshold:.5
+    Automatically calculate the size of objects for the Laplacian of Gaussian filter?:Yes
+    Enter LoG filter diameter:5
+    Handling of objects if excessive number of objects identified:Continue
+    Maximum number of objects:500
+    Threshold setting version:1
+    Threshold strategy:Adaptive
+    Thresholding method:RobustBackground
+    Select the smoothing method for thresholding:Automatic
+    Threshold smoothing scale:1
+    Threshold correction factor:0.85
+    Lower and upper bounds on threshold:0,1
+    Approximate fraction of image covered by objects?:0.1
+    Manual threshold:0.0
+    Select the measurement to threshold with:None
+    Select binary image:MoG Global
+    Masking objects:From image
+    Two-class or three-class thresholding?:Two classes
+    Minimize the weighted variance or the entropy?:Weighted variance
+    Assign pixels in the middle intensity class to the foreground or the background?:Foreground
+    Method to calculate adaptive window size:Image size
+    Size of adaptive window:10
+
+IdentifyPrimaryObjects:[module_num:10|svn_version:\'Unknown\'|variable_revision_number:10|show_window:True|notes:\x5B\'Identify the mitotic features from the PH3 image. Some manual adjustment of the maxima supression distance is required to optimize segmentation.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:False|wants_pause:False]
+    Select the input image:OrangeG
+    Name the primary objects to be identified:PH3
+    Typical diameter of objects, in pixel units (Min,Max):2,15
+    Discard objects outside the diameter range?:No
+    Try to merge too small objects with nearby larger objects?:No
+    Discard objects touching the border of the image?:Yes
+    Method to distinguish clumped objects:Intensity
+    Method to draw dividing lines between clumped objects:Intensity
+    Size of smoothing filter:7
+    Suppress local maxima that are closer than this minimum allowed distance:7
+    Speed up by using lower-resolution image to find local maxima?:Yes
+    Name the outline image:PrimaryOutlines
+    Fill holes in identified objects?:After both thresholding and declumping
+    Automatically calculate size of smoothing filter for declumping?:No
+    Automatically calculate minimum allowed distance between local maxima?:Yes
+    Retain outlines of the identified objects?:No
+    Automatically calculate the threshold using the Otsu method?:Yes
+    Enter Laplacian of Gaussian threshold:0.5
+    Automatically calculate the size of objects for the Laplacian of Gaussian filter?:Yes
+    Enter LoG filter diameter:5
+    Handling of objects if excessive number of objects identified:Continue
+    Maximum number of objects:500
+    Threshold setting version:1
+    Threshold strategy:Per object
+    Thresholding method:Otsu
+    Select the smoothing method for thresholding:Automatic
+    Threshold smoothing scale:1
+    Threshold correction factor:1
+    Lower and upper bounds on threshold:0.000000,1.000000
+    Approximate fraction of image covered by objects?:0.01
+    Manual threshold:0.0
+    Select the measurement to threshold with:None
+    Select binary image:None
+    Masking objects:Nuclei
+    Two-class or three-class thresholding?:Two classes
+    Minimize the weighted variance or the entropy?:Weighted variance
+    Assign pixels in the middle intensity class to the foreground or the background?:Foreground
+    Method to calculate adaptive window size:Image size
+    Size of adaptive window:10
+
+RelateObjects:[module_num:11|svn_version:\'Unknown\'|variable_revision_number:2|show_window:True|notes:\x5B\'One way to determine whether a nucleus is PH3-positive or negative is to establish a parent-child between the PH3 ("children") and the nuclei ("parents") in order to determine which mitotic object belong to which nuclei.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:False|wants_pause:False]
+    Select the input child objects:PH3
+    Select the input parent objects:Nuclei
+    Calculate child-parent distances?:None
+    Calculate per-parent means for all child measurements?:No
+    Calculate distances to other parents?:No
+    Parent name:None
+
+ClassifyObjects:[module_num:12|svn_version:\'Unknown\'|variable_revision_number:2|show_window:True|notes:\x5B\'You can classify the objects with this module to obtain the percentage of PH3-positive and -negative nuclei. The number of PH3 children per-cell is 1 or more with PH3-positive nuclei, so the cutoff is set 0.5 since it is between 0 and 1.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:False|wants_pause:False]
+    Make each classification decision on how many measurements?:Single measurement
+    Hidden:1
+    Select the object to be classified:Nuclei
+    Select the measurement to classify by:Children_PH3_Count
+    Select bin spacing:Custom-defined bins
+    Number of bins:3
+    Lower threshold:0
+    Use a bin for objects below the threshold?:Yes
+    Upper threshold:1
+    Use a bin for objects above the threshold?:Yes
+    Enter the custom thresholds separating the values between bins:0.5
+    Give each bin a name?:Yes
+    Enter the bin names separated by commas:NoPH3Objs,SomePH3Objs
+    Retain an image of the classified objects?:Yes
+    Name the output image:ClassifiedNuclei_PH3
+    Select the object name:None
+    Select the first measurement:None
+    Method to select the cutoff:Mean
+    Enter the cutoff value:0.5
+    Select the second measurement:None
+    Method to select the cutoff:Mean
+    Enter the cutoff value:0.5
+    Use custom names for the bins?:No
+    Enter the low-low bin name:low_low
+    Enter the low-high bin name:low_high
+    Enter the high-low bin name:high_low
+    Enter the high-high bin name:high_high
+    Retain an image of the classified objects?:No
+    Enter the image name:None
+
+SaveImages:[module_num:13|svn_version:\'Unknown\'|variable_revision_number:11|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:False|wants_pause:False]
+    Select the type of image to save:Image
+    Select the image to save:ClassifiedNuclei_PH3
+    Select the objects to save:None
+    Select the module display window to save:None
+    Select method for constructing file names:From image filename
+    Select image name for file prefix:DNA
+    Enter single file name:OrigBlue
+    Number of digits:4
+    Append a suffix to the image file name?:Yes
+    Text to append to the image name:_ClassifiedNuclei_PH3
+    Saved file format:tif
+    Output file location:Default Output Folder\x7C
+    Image bit depth:8
+    Overwrite existing files without warning?:Yes
+    When to save:Every cycle
+    Rescale the images? :No
+    Save as grayscale or color image?:Grayscale
+    Select colormap:gray
+    Record the file and path information to the saved image?:No
+    Create subfolders in the output folder?:No
+    Base image folder:Elsewhere...\x7C
+    Saved movie format:avi
+
+MeasureObjectIntensity:[module_num:14|svn_version:\'Unknown\'|variable_revision_number:3|show_window:True|notes:\x5B\'Another way to determine whether a nucleus is PH3-positive is to measure the nucleus intensity from the PH3 channel.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Hidden:1
+    Select an image to measure:Costum
+    Select objects to measure:Nuclei
+
+MeasureObjectSizeShape:[module_num:15|svn_version:\'Unknown\'|variable_revision_number:1|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select objects to measure:Nuclei
+    Calculate the Zernike features?:Yes
+
+ExportToSpreadsheet:[module_num:16|svn_version:\'Unknown\'|variable_revision_number:11|show_window:True|notes:\x5B\'Export the per-image measurements to a comma-delimited file (.csv).\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:True|wants_pause:False]
+    Select the column delimiter:Tab
+    Add image metadata columns to your object data file?:No
+    Limit output to a size that is allowed in Excel?:No
+    Select the measurements to export:No
+    Calculate the per-image mean values for object measurements?:No
+    Calculate the per-image median values for object measurements?:No
+    Calculate the per-image standard deviation values for object measurements?:No
+    Output file location:Default Output Folder\x7C.
+    Create a GenePattern GCT file?:No
+    Select source of sample row name:Metadata
+    Select the image to use as the identifier:None
+    Select the metadata to use as the identifier:None
+    Export all measurement types?:No
+    Press button to select measurements to export:None\x7CNone
+    Representation of Nan/Inf:NaN
+    Add a prefix to file names?:No
+    Filename prefix\x3A:MyExpt_
+    Overwrite without warning?:Yes
+    Data to export:Nuclei
+    Combine these object measurements with those of the previous object?:No
+    File name:Image.csv
+    Use the object name for the file name?:Yes
+
+SaveImages:[module_num:17|svn_version:\'Unknown\'|variable_revision_number:11|show_window:False|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:False|wants_pause:False]
+    Select the type of image to save:Objects
+    Select the image to save:None
+    Select the objects to save:Nuclei
+    Select the module display window to save:None
+    Select method for constructing file names:From image filename
+    Select image name for file prefix:DNA
+    Enter single file name:OrigBlue
+    Number of digits:4
+    Append a suffix to the image file name?:Yes
+    Text to append to the image name:_NucleiOutlines
+    Saved file format:tif
+    Output file location:Default Output Folder\x7C
+    Image bit depth:8
+    Overwrite existing files without warning?:Yes
+    When to save:Every cycle
+    Rescale the images? :No
+    Save as grayscale or color image?:Color
+    Select colormap:jet
+    Record the file and path information to the saved image?:No
+    Create subfolders in the output folder?:No
+    Base image folder:Elsewhere...\x7C
+    Saved movie format:avi
+
+DisplayDataOnImage:[module_num:18|svn_version:\'Unknown\'|variable_revision_number:5|show_window:True|notes:\x5B\'Here, we display the per-nuclei median intensities overlaid on the nuclei so we can visually determine a cutoff. Fortunately, the phenotype is clearly discernable, so a cutoff can be easily chosen in this case.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:False|wants_pause:False]
+    Display object or image measurements?:Object
+    Select the input objects:Nuclei
+    Measurement to display:Intensity_MedianIntensity_OrigBlue
+    Select the image on which to display the measurements:DNA
+    Text color:red
+    Name the output image that has the measurements displayed:DisplayImage
+    Font size (points):10
+    Number of decimals:2
+    Image elements to save:Image
+    Annotation offset (in pixels):0
+    Display mode:Text
+    Color map:jet
+    Display background image?:Yes
+
+ClassifyObjects:[module_num:19|svn_version:\'Unknown\'|variable_revision_number:2|show_window:True|notes:\x5B\'Again, we classify the nuclei, this time on the basis of the median intensity measurement with 0.1 as the empirically determined cutoff.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:False|wants_pause:False]
+    Make each classification decision on how many measurements?:Single measurement
+    Hidden:1
+    Select the object to be classified:Nuclei
+    Select the measurement to classify by:Intensity_MeanIntensity_OrigBlue
+    Select bin spacing:Custom-defined bins
+    Number of bins:3
+    Lower threshold:0
+    Use a bin for objects below the threshold?:Yes
+    Upper threshold:1
+    Use a bin for objects above the threshold?:Yes
+    Enter the custom thresholds separating the values between bins:0.1
+    Give each bin a name?:Yes
+    Enter the bin names separated by commas:PH3Neg,PH3Pos
+    Retain an image of the classified objects?:Yes
+    Name the output image:ClassifiedNuclei
+    Select the object name:None
+    Select the first measurement:None
+    Method to select the cutoff:Mean
+    Enter the cutoff value:0.5
+    Select the second measurement:None
+    Method to select the cutoff:Mean
+    Enter the cutoff value:0.5
+    Use custom names for the bins?:No
+    Enter the low-low bin name:low_low
+    Enter the low-high bin name:low_high
+    Enter the high-low bin name:high_low
+    Enter the high-high bin name:high_high
+    Retain an image of the classified objects?:No
+    Enter the image name:None
+
+SaveImages:[module_num:20|svn_version:\'Unknown\'|variable_revision_number:11|show_window:True|notes:\x5B\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:False|wants_pause:False]
+    Select the type of image to save:Image
+    Select the image to save:ClassifiedNuclei
+    Select the objects to save:None
+    Select the module display window to save:None
+    Select method for constructing file names:From image filename
+    Select image name for file prefix:DNA
+    Enter single file name:OrigBlue
+    Number of digits:4
+    Append a suffix to the image file name?:Yes
+    Text to append to the image name:_CalssifiedNuclei
+    Saved file format:tif
+    Output file location:Default Output Folder\x7C
+    Image bit depth:8
+    Overwrite existing files without warning?:Yes
+    When to save:Every cycle
+    Rescale the images? :No
+    Save as grayscale or color image?:Grayscale
+    Select colormap:gray
+    Record the file and path information to the saved image?:No
+    Create subfolders in the output folder?:No
+    Base image folder:Elsewhere...\x7C
+    Saved movie format:avi
+
+FilterObjects:[module_num:21|svn_version:\'Unknown\'|variable_revision_number:7|show_window:True|notes:\x5B\'The last approach is to filter the nuclei on the basis of the number of PH3 children. The number of PH3-positive nuclei is the same as before, but in this case, the filtered nuclei can be used downstream for further analysis.\'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:False|wants_pause:False]
+    Name the output objects:PH3PosNuclei
+    Select the object to filter:Nuclei
+    Select the filtering mode:Measurements
+    Select the filtering method:Limits
+    Select the objects that contain the filtered objects:None
+    Retain outlines of the identified objects?:No
+    Name the outline image:FilteredObjects
+    Rules file location:Elsewhere...\x7C/Users/veneskey/svn/pipeline/ExampleImages/ExamplePercentPositive
+    Rules file name:rules.txt
+    Class number:1
+    Measurement count:1
+    Additional object count:0
+    Assign overlapping child to:Both parents
+    Select the measurement to filter by:Children_PH3_Count
+    Filter using a minimum measurement value?:Yes
+    Minimum value:1
+    Filter using a maximum measurement value?:No
+    Maximum value:1
+
+CalculateMath:[module_num:22|svn_version:\'Unknown\'|variable_revision_number:2|show_window:True|notes:\x5B\'CalculateMath can also be used to obtain a per-image percentage of PH3-positive nuclei if ClassifyObjects is not practical to use for your assay\x3A Divide the PH3 nuclei count by the total nuclei count and multiply by 100. \'\x5D|batch_state:array(\x5B\x5D, dtype=uint8)|enabled:False|wants_pause:False]
+    Name the output measurement:PercentPositive
+    Operation:Divide
+    Select the first operand measurement type:Image
+    Select the first operand objects:None
+    Select the first operand measurement:Count_PH3PosNuclei
+    Multiply the above operand by:1
+    Raise the power of above operand by:1
+    Select the second operand measurement type:Image
+    Select the second operand objects:None
+    Select the second operand measurement:Count_Nuclei
+    Multiply the above operand by:1
+    Raise the power of above operand by:1
+    Take log10 of result?:No
+    Multiply the result by:100
+    Raise the power of result by:1
+    Add to the result:0
+    Constrain the result to a lower bound?:No
+    Enter the lower bound:0
+    Constrain the result to an upper bound?:No
+    Enter the upper bound:1
