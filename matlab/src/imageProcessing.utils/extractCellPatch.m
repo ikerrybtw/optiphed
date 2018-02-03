@@ -36,18 +36,48 @@ if nargin == 5
             error('Input is tif file, but you specified layer. Please check again.');
         else
             I = imread(image);
+            % there should be if for overlay, but not used for now
+            % also I only added this functionality for tifs for now
             
+            % if exist(strcat(image(1:end-4), 'NucleiOutlines.tif'), 'File') == 2
+            outlines = imread(strcat(image(1:end-4), '_NucleiOutlines.tif'));
+            temp = outlines(row-big_radius+1:row+big_radius, col-big_radius+1:col+big_radius, :);
+            outlines = zeros(size(outlines));
+            outlines(row-big_radius+1:row+big_radius, col-big_radius+1:col+big_radius, :) = temp;
             cell_im3 = I(row-very_big_radius+1:row+very_big_radius, col-very_big_radius+1:col+very_big_radius, :);
+            
+            green = zeros(size(cell_im3));
+            green(:,:,2) = 1;
+            im_outlines = outlines(row-very_big_radius+1:row+very_big_radius, col-very_big_radius+1:col+very_big_radius, :);
+            
             figure;
+        
             imshow(cell_im3, 'InitialMagnification', round(DEFAULT_RADIUS / very_big_radius) * 100);
+            hold on;   
+            h = imshow(green);      set(h, 'AlphaData', im_outlines(:,:,1)*0.8);
             
             cell_im2 = I(row-big_radius+1:row+big_radius, col-big_radius+1:col+big_radius, :);
+            
+            green = zeros(size(cell_im2));
+            green(:,:,2) = 1;
+            im_outlines = outlines(row-big_radius+1:row+big_radius, col-big_radius+1:col+big_radius, :);
+            
             figure;
             imshow(cell_im2, 'InitialMagnification', round(DEFAULT_RADIUS / big_radius) * 100);
+            hold on;   
+            h = imshow(green);      set(h, 'AlphaData', im_outlines(:,:,1)*0.8);
+            
             
             cell_im = I(row-radius+1:row+radius, col-radius+1:col+radius, :);
+            
+            green = zeros(size(cell_im));
+            green(:,:,2) = 1;
+            im_outlines = outlines(row-radius+1:row+radius, col-radius+1:col+radius, :);
+            
             figure;
             imshow(cell_im, 'InitialMagnification', round(DEFAULT_RADIUS / radius) * 100);
+            hold on;   
+            h = imshow(green);      set(h, 'AlphaData', im_outlines(:,:,1)*0.8);
             
             
         end
@@ -91,17 +121,43 @@ if nargin == 6
         else 
             I = imread(image);
             
+            outlines = imread(strcat(image(1:end-4), '_NucleiOutlines.tif'));
+            temp = outlines(row-big_radius+1:row+big_radius, col-big_radius+1:col+big_radius, :);
+            outlines = zeros(size(outlines));
+            outlines(row-big_radius+1:row+big_radius, col-big_radius+1:col+big_radius, :) = temp;
+            
             cell_im3 = I(row-very_big_radius+1:row+very_big_radius, col-very_big_radius+1:col+very_big_radius, :);
+            
+            green = zeros(size(cell_im3));
+            green(:,:,2) = 1;
+            im_outlines = outlines(row-very_big_radius+1:row+very_big_radius, col-very_big_radius+1:col+very_big_radius, :);
+            
             figure;
             imshow(cell_im3, 'InitialMagnification', round(DEFAULT_RADIUS / very_big_radius) * 100);
+            hold on;
+            h = imshow(green);      set(h, 'AlphaData', im_outlines(:,:,1)*0.8);
             
             cell_im2 = I(row-big_radius+1:row+big_radius, col-big_radius+1:col+big_radius, :);
+            
+            green = zeros(size(cell_im2));
+            green(:,:,2) = 1;
+            im_outlines = outlines(row-big_radius+1:row+big_radius, col-big_radius+1:col+big_radius, :);
+            
             figure;
             imshow(cell_im2, 'InitialMagnification', round(DEFAULT_RADIUS / big_radius) * 100);
+            hold on;
+            h = imshow(green);      set(h, 'AlphaData', im_outlines(:,:,1)*0.8);
             
             cell_im = I(loc_x-rad+1:loc_x+rad, loc_y-rad+1:loc_y+rad, :);
+            
+            green = zeros(size(cell_im));
+            green(:,:,2) = 1;
+            im_outlines = outlines(row-rad+1:row+rad, col-rad+1:col+rad, :);
+            
             figure;
             imshow(cell_im, 'InitialMagnification', round(DEFAULT_RADIUS / rad) * 100);
+            hold on;
+            h = imshow(green);      set(h, 'AlphaData', im_outlines(:,:,1)*0.8);
             
         end
     else
