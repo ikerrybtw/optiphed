@@ -1,5 +1,5 @@
 function [ im2 ] = extractCellPatch(image, row, col, varargin)
-%UNTITLED Summary of this function goes here
+%UNTITLED Given image, extracts and displays patch centered around [row, col]
 %   Detailed explanation goes here
 DEFAULT_RADIUS = 160;
 CONSTANT_RAD = 5;
