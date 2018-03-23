@@ -1,3 +1,4 @@
+% demo script from meeting with Carlos
 close all
 % constants
 CELL_INDEX = 2;
